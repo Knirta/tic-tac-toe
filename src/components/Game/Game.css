@@ -1,0 +1,20 @@
+.status {
+    margin-bottom: 10px;
+}
+
+.game {
+    display: flex;
+    flex-direction: row;
+}
+  
+.game-info {
+    margin-left: 20px;
+}
+
+.accented {
+    color: rgb(17, 17, 131);
+}
+
+.active button {
+    font-weight: 700;
+}
