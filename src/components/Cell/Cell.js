@@ -1,5 +1,5 @@
 import React from 'react';
-import './Cell.css';
+import './Cell.scss';
 
 function Cell(props) {
     return (
@@ -7,7 +7,7 @@ function Cell(props) {
             className={`cell ${props.highlight ? 'highlight' : '' }`}
             onClick={props.onClick}
         >
-            {props.value}
+            <span className='mark'>{props.value}</span>
         </button>   
     );
 }

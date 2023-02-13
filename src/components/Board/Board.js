@@ -1,6 +1,6 @@
 import React from 'react';
 import Cell from '../Cell';
-import './Board.css';
+import './Board.scss';
 
 class Board extends React.Component {
     renderCell(i) {
@@ -19,26 +19,11 @@ class Board extends React.Component {
         );
     }
 
-    renderBoard(size) {
-        const board = [];
-        for (let i = 0; i < size; i++) {
-            let row = [];
-            for (let j = 0; j < size; j++) {
-                row.push(this.renderCell(i * size + j));
-            }
-            board.push(
-                <div key={i} className="board-row">
-                    {row}
-                </div>
-            );
-        }
-        return board;
-    }
-
     render() {
+        const cells = this.props.cells;
         return (
-            <div className="game-board">
-            {this.renderBoard(3)}
+            <div className="board">
+                { cells.map( (_, idx ) => this.renderCell(idx) )}
             </div>
         );
     }

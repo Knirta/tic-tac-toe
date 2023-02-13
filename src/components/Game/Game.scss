@@ -1,0 +1,95 @@
+@import '../../common/utils/breakpoints.scss';
+
+.status {
+    text-align: center;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    @media screen and (min-width: $tabletWidth) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: unset;
+    }
+ 
+}
+
+.game-board {
+    padding: 20px 0;
+
+    @media screen and (min-width: $tabletWidth) {
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 40px;
+    }
+}
+
+
+.status {
+    color: rgb(25, 116, 210);
+    font-size: 18px;
+}
+
+.panel {
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+
+    @media screen and (min-width: $tabletWidth) {
+        align-self: start;
+    }
+}
+  
+.game-info {
+    width: 240px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media  screen and (min-width: $tabletWidth) {
+        width: 50%; 
+        padding-top: 0;
+        padding-left: 40px;
+        align-items: start;
+    }
+    
+}
+
+.active button {
+    font-weight: 600;
+}
+
+.btn {
+    width: 200px;
+    padding: 10px 5px;
+    border: none;
+    outline: none;
+    border-radius:2px;
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);;
+    background-color:  rgb(1, 68, 134);
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.order {
+    width: auto;
+    margin-bottom: 8px;
+    padding: 10px 20px;
+    font-size: 50px;
+    background-color: transparent;
+    color:rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+}
+
+.item + .item {
+    margin-top: 15px;
+}

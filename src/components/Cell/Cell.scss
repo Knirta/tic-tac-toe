@@ -1,0 +1,25 @@
+.cell {
+    color: rgb(1, 68, 134);
+    background: #fff;
+    border: none;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 70px;
+    height: 70px;
+    padding: 0;
+    text-align: center;
+    width: 70px;
+}
+  
+.cell:focus {
+    outline: none;
+}
+
+.highlight {
+    background-color: rgb(25, 116, 210);
+    color: rgb(255, 255, 255);
+  }
+
+  .mark {
+      display: block;
+  }

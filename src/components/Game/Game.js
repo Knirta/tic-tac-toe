@@ -1,7 +1,8 @@
 import React from "react";
 import Board from '../Board';
+import Header from '../Header';
 import { calculateWinner, calculateCurrentPosition } from '../../helpers/helpers'
-import './Game.css';
+import './Game.scss';
 
 class Game extends React.Component {
     constructor(props) {
@@ -67,36 +68,44 @@ class Game extends React.Component {
             let desc;
             if (step) {
                 const position = calculateCurrentPosition(move.position);
-                desc = <p>Go to move #{step} <span className='accented'>{position}</span></p>
+                desc = `Go to move #${step} ${position}`;
             } else {
-                desc = <p>Go to game start</p>
+                desc = 'Go to game start';
             }
             return (
-                <li key={step} className={step === this.state.stepNumber ? 'active' : ''}>
-                    <button onClick={() => this.jumpTo(step)}>
+                <li key={step} className={`item ${step === this.state.stepNumber ? 'active' : ''}`}>
+                    <button
+                        className='btn'
+                        onClick={() => this.jumpTo(step)}
+                    >
                         {desc}
                     </button>
                 </li>
             )
         });
 
-        const order = this.state.isAscending ? 'Descending' : 'Ascending';
+        const order = String.fromCharCode(this.state.isAscending ? 10225 : 10224);
 
         return (
-        <div className="game">
-            <div className="game-board">
-                <Board 
-                    line={line}
-                    cells={current.cells}
-                    onClick={(i) => this.handleClick(i)}  
-                />
+        <>
+            <Header/>
+            <div className="game">
+                <div className="game-board">
+                    <div className="panel">
+                        <p className="status">{status}</p>
+                        <Board 
+                            line={line}
+                            cells={current.cells}
+                            onClick={(i) => this.handleClick(i)}  
+                        />
+                    </div>
+                </div>    
+                <div className="game-info">
+                    <button className="order" onClick={this.toggleOrder}>{order}</button>
+                    <ol>{this.state.isAscending ? moves : moves.reverse()}</ol>
+                </div>
             </div>
-            <div className="game-info">
-                <div>{status}</div>
-                <button className="order" onClick={this.toggleOrder}>{order}</button>
-                <ol>{this.state.isAscending ? moves : moves.reverse()}</ol>
-            </div>
-        </div>
+        </>
         );
     }
 }

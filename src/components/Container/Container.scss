@@ -1,0 +1,16 @@
+@import '../../common/utils/breakpoints.scss';
+
+.container {
+    min-width: $minMobileWidth;
+    min-height: 100vh;
+    padding: 10px 25px;
+    background-color: rgb(25, 116, 210);
+    
+    @media screen and (min-width: $tabletWidth) {
+        padding: 25px 50px;
+    }
+
+    @media screen and (min-width: $desctopWidth) {
+        padding: 25px 100px;
+    }
+}
