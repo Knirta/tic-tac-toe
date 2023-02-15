@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { CSSTransition } from 'react-transition-group';
 import Board from '../Board';
 import Header from '../Header';
 import { calculateWinner, calculateCurrentPosition } from '../../helpers/helpers'
@@ -66,20 +67,29 @@ class Game extends React.Component {
         }
         const moves = history.map((move, step) => {
             let desc;
+            let show = false
             if (step) {
                 const position = calculateCurrentPosition(move.position);
                 desc = `Go to move #${step} ${position}`;
             } else {
                 desc = 'Go to game start';
+                setTimeout(() => {show = true}, 1000)
             }
+
             return (
                 <li key={step} className={`item ${step === this.state.stepNumber ? 'active' : ''}`}>
-                    <button
-                        className='btn'
-                        onClick={() => this.jumpTo(step)}
+                    <CSSTransition
+                        in={true}
+                        timeout={300}
+                        classNames='btn'
                     >
-                        {desc}
-                    </button>
+                        <button
+                            className='btn'
+                            onClick={() => this.jumpTo(step)}
+                        >
+                            {desc}
+                        </button>
+                    </CSSTransition>
                 </li>
             )
         });

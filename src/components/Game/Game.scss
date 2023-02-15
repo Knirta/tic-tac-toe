@@ -79,6 +79,15 @@
     cursor: pointer;
 }
 
+.btn-enter {
+    opacity: 0;
+}
+
+.btn-enter-active {
+    opacity: 1;
+    transition: opacity .3s;
+}
+
 .order {
     width: auto;
     margin-bottom: 8px;
