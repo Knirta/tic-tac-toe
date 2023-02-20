@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Board from '../Board';
 import Header from '../Header';
 import { calculateWinner, calculateCurrentPosition } from '../../helpers/helpers'
@@ -11,12 +11,15 @@ class Game extends React.Component {
         this.state = {
             history: [{
                 cells: Array(9).fill(null),
-                position: 0,
+                position: null,
             }],
             isXNext: true,
             stepNumber: 0,
             isAscending: true,
         }
+        this.ascRef = React.createRef();
+        this.descRef = React.createRef();
+        this.btnRef = this.state.isAscending ? this.descRef : this.ascRef;
         this.toggleOrder = this.toggleOrder.bind(this);
     }
 
@@ -57,6 +60,7 @@ class Game extends React.Component {
         let status;
         let line = null;
         const winner = calculateWinner(current.cells);
+        
         if (winner) {
             status = `Winner: ${winner.cell}`;
             line = winner.line;
@@ -65,36 +69,29 @@ class Game extends React.Component {
         } else {
             status = `Next player: ${this.state.isXNext ? 'X' : 'O'}`;
         }
+             
         const moves = history.map((move, step) => {
             let desc;
-            let show = false
             if (step) {
                 const position = calculateCurrentPosition(move.position);
                 desc = `Go to move #${step} ${position}`;
             } else {
                 desc = 'Go to game start';
-                setTimeout(() => {show = true}, 1000)
             }
 
             return (
-                <li key={step} className={`item ${step === this.state.stepNumber ? 'active' : ''}`}>
-                    <CSSTransition
-                        in={true}
-                        timeout={300}
-                        classNames='btn'
+                <li key={desc} className={`item ${step === this.state.stepNumber ? 'active' : ''}`}>
+                    <button
+                        className='btn'
+                        onClick={() => this.jumpTo(step)}
                     >
-                        <button
-                            className='btn'
-                            onClick={() => this.jumpTo(step)}
-                        >
-                            {desc}
-                        </button>
-                    </CSSTransition>
+                        {desc}
+                    </button>
                 </li>
             )
         });
 
-        const order = String.fromCharCode(this.state.isAscending ? 10225 : 10224);
+        const orderedMoves = this.state.isAscending ? moves : [...moves].reverse();
 
         return (
         <>
@@ -110,9 +107,24 @@ class Game extends React.Component {
                         />
                     </div>
                 </div>    
-                <div className="game-info">
-                    <button className="order" onClick={this.toggleOrder}>{order}</button>
-                    <ol>{this.state.isAscending ? moves : moves.reverse()}</ol>
+                <div className='game-info'>
+                    <SwitchTransition mode='out-in'>
+                        <CSSTransition
+                            key={this.state.isAscending}
+                            nodeRef={this.btnRef}
+                            addEndListener={done => this.btnRef.current.addEventListener('transitionend', done, false)}
+                            classNames='order'
+                        >
+                            <button 
+                                className='order'
+                                ref={this.btnRef}
+                                onClick={this.toggleOrder}
+                            >
+                                {String.fromCharCode(this.state.isAscending ? 10225 : 10224)}
+                            </button>
+                        </CSSTransition>
+                    </SwitchTransition>
+                    <ol>{orderedMoves}</ol>
                 </div>
             </div>
         </>

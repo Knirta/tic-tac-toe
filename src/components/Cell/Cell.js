@@ -12,11 +12,10 @@ function Cell({value, highlight, onClick}) {
             <CSSTransition
                 in={!!value}
                 timeout={300}
-                classNames='mark'
-                // {{
-                //     enter: 'mark-enter',
-                //     enterActive: 'mark-enter-active'
-                // }}
+                classNames=  {{
+                    enter: 'mark-enter',
+                    enterActive: 'mark-enter-active'
+                }}
             >
                 <span className='mark'>{value}</span>
             </CSSTransition>

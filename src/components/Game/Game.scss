@@ -64,6 +64,7 @@
 
 .active button {
     font-weight: 600;
+    color: rgb(222, 184, 135)
 }
 
 .btn {
@@ -77,26 +78,55 @@
     background-color:  rgb(1, 68, 134);
     text-transform: uppercase;
     cursor: pointer;
+    animation: btnAppear .3s;
 }
 
-.btn-enter {
-    opacity: 0;
-}
-
-.btn-enter-active {
-    opacity: 1;
-    transition: opacity .3s;
+@keyframes btnAppear {
+    from {
+        opacity: 0;
+        transform: scale(.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .order {
-    width: auto;
-    margin-bottom: 8px;
-    padding: 10px 20px;
+    width: 200px;
     font-size: 50px;
+    text-align: center;
     background-color: transparent;
     color:rgb(255, 255, 255);
     border: none;
+    margin-bottom: 8px;
+    padding: 10px 0;
     cursor: pointer;
+}
+
+.order-enter{
+    opacity: 0;
+    transform:  rotate(180deg);
+} 
+
+.order-exit {
+    opacity: 1;
+    transform:  rotate(0deg);
+}
+
+.order-enter-active {
+    opacity: 1;
+    transform:  rotate(360deg);
+}
+
+.order-exit-active {
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+.order-enter-active,
+.order-exit-active {
+    transition: all 150ms linear;
 }
 
 .item + .item {
