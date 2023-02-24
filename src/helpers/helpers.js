@@ -36,7 +36,7 @@ export function calculateWinner(cells) {
 }
 
 export function calculateCurrentPosition(i) {
-    const col = i % 3; 
-    const row = Math.floor(i / 3);
-    return (`(${col}, ${row})`);
+    const row = Math.floor(i / 3) + 1;
+    const col = i % 3 + 1; 
+    return (`(${row}, ${col})`);
 }
