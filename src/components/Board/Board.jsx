@@ -11,9 +11,10 @@ class Board extends React.Component {
         }
         return (
             <Cell
-                highlight={highlight}
-                key={i}
                 value={this.props.cells[i]}
+                key={i}
+                highlight={highlight}
+                testId={`cell-${i}`}
                 onClick={() => this.props.onClick(i)}
             />
         );

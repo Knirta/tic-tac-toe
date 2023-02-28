@@ -1,7 +1,6 @@
 import React from 'react';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Board from '../Board';
-import Header from '../Header';
 import { calculateWinner, calculateCurrentPosition } from '../../helpers/helpers'
 import './Game.scss';
 
@@ -83,6 +82,7 @@ class Game extends React.Component {
                 <li key={desc} className={`item ${step === this.state.stepNumber ? 'active' : ''}`}>
                     <button
                         className='btn'
+                        data-testid={`btn-${step}`}
                         onClick={() => this.jumpTo(step)}
                     >
                         {desc}
@@ -94,8 +94,6 @@ class Game extends React.Component {
         const orderedMoves = this.state.isAscending ? moves : [...moves].reverse();
 
         return (
-        <>
-            <Header/>
             <div className="game">
                 <div className="game-board">
                     <div className="panel">
@@ -127,7 +125,7 @@ class Game extends React.Component {
                     <ol>{orderedMoves}</ol>
                 </div>
             </div>
-        </>
+        
         );
     }
 }
