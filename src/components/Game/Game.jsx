@@ -122,7 +122,7 @@ class Game extends React.Component {
                             </button>
                         </CSSTransition>
                     </SwitchTransition>
-                    <ol>{orderedMoves}</ol>
+                    <ul className='moves'>{orderedMoves}</ul>
                 </div>
             </div>
         

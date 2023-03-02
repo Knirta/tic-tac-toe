@@ -6,7 +6,7 @@
     padding: 10px 25px;
     background-color: rgb(25, 116, 210);
     
-    @media screen and (min-width: $tabletWidth) {
+    @media screen and (min-width: $minTabletWidth) {
         padding: 25px 50px;
     }
 

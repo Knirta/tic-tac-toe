@@ -10,7 +10,7 @@
     align-items: center;
     padding: 20px;
 
-    @media screen and (min-width: $tabletWidth) {
+    @media screen and (min-width: $minTabletWidth) {
         flex-direction: row;
         justify-content: center;
         align-items: unset;
@@ -21,10 +21,15 @@
 .game-board {
     padding: 20px 0;
 
-    @media screen and (min-width: $tabletWidth) {
-        width: 50%;
+    @media screen and (min-width: $minTabletWidth) {
+        width: 45%;
         display: flex;
         justify-content: flex-end;
+        padding-right: 20px;
+    }
+
+    @media screen and (min-width: $desctopWidth) {
+        width: 50%;
         padding-right: 40px;
     }
 }
@@ -41,7 +46,7 @@
     border-radius: 4px;
     box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
 
-    @media screen and (min-width: $tabletWidth) {
+    @media screen and (min-width: $minTabletWidth) {
         align-self: start;
     }
 }
@@ -53,11 +58,16 @@
     flex-direction: column;
     align-items: center;
 
-    @media  screen and (min-width: $tabletWidth) {
-        width: 50%; 
+    @media  screen and (min-width: $minTabletWidth) {
+        width: 55%; 
         padding-top: 0;
-        padding-left: 40px;
+        padding-left: 20px;
         align-items: start;
+    }
+
+    @media screen and (min-width: $desctopWidth) {
+        width: 50%;
+        padding-left: 40px;
     }
     
 }
@@ -79,6 +89,11 @@
     text-transform: uppercase;
     cursor: pointer;
     animation: btnAppear .3s;
+
+    @media  screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
+        width: 165px;
+        font-size: 14px;
+    }
 }
 
 @keyframes btnAppear {
@@ -130,5 +145,25 @@
 }
 
 .item + .item {
-    margin-top: 15px;
+    @media screen and (max-width: $maxMobileWidth) {
+        margin-top: 15px;
+    }
 }
+
+.moves {
+    @media  screen and (min-width: $minTabletWidth) {
+        /*  two colums buttons with css grid (5 rows, two columns) */
+        display: grid;
+        gap: 7px;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(5, auto);
+        /*  two colums buttons with css flex
+        display: flex;
+        flex-flow: column wrap;
+        gap: 7px;
+        height: 220px;
+        */
+    }
+}
+
