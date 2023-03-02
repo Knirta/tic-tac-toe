@@ -3,10 +3,10 @@ import { CSSTransition } from 'react-transition-group';
 
 import './Cell.scss';
 
-function Cell({value, highlight, testId, onClick}) {
+function Cell({value, highlight, current, testId, onClick}) {
     return (
         <button
-            className={`cell ${highlight ? 'highlight' : '' }`}
+            className={`cell ${highlight ? 'highlight' : '' } ${current ? 'current' : ''}`}
             data-testid={testId}
             onClick={onClick}
         >

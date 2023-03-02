@@ -6,6 +6,8 @@ class Board extends React.Component {
     renderCell(i) {
         const line = this.props.line;
         let highlight = false;
+        let current = false;
+        current = this.props.position == i;
         if (line) {
             highlight = line.includes(i);
         }
@@ -14,6 +16,7 @@ class Board extends React.Component {
                 value={this.props.cells[i]}
                 key={i}
                 highlight={highlight}
+                current={current}
                 testId={`cell-${i}`}
                 onClick={() => this.props.onClick(i)}
             />

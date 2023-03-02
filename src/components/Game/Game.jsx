@@ -101,6 +101,7 @@ class Game extends React.Component {
                         <Board 
                             line={line}
                             cells={current.cells}
+                            position={current.position}
                             onClick={(i) => this.handleClick(i)}  
                         />
                     </div>
