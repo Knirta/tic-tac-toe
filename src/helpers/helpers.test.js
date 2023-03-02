@@ -104,16 +104,21 @@ describe('Function calculate current position', () => {
     });
 
     it('return string of row and column', () => {
-        expect(calculateCurrentPosition(2)).toBe('(1, 3)');
-        expect(calculateCurrentPosition(4)).toBe('(2, 2)');
-        expect(calculateCurrentPosition(8)).toBe('(3, 3)');
+        expect(calculateCurrentPosition(2)).toEqual({
+            row: 'row 1',
+            col: 'col 3'
+        });
+        expect(calculateCurrentPosition(4)).toEqual({
+            row: 'row 2',
+            col: 'col 2'
+        });
+        expect(calculateCurrentPosition(8)).toEqual({
+            row: 'row 3',
+            col: 'col 3'
+        });
     });
 
     it('does not return null', () => {});
     expect(calculateCurrentPosition(3)).not.toBeNull();
     expect(calculateCurrentPosition(5)).toBeTruthy();
- 
-    it('return string like "(row, col)"', () => {
-        expect(calculateCurrentPosition(1)).toEqual(expect.stringMatching(/(\d, \d)/));
-    });
 });

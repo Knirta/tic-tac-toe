@@ -6,7 +6,7 @@ import './Cell.scss';
 function Cell({value, highlight, current, testId, onClick}) {
     return (
         <button
-            className={`cell ${highlight ? 'highlight' : '' } ${current ? 'current' : ''}`}
+            className={`cell ${highlight ? 'highlight' : ''} ${current ? 'current' : ''}`}
             data-testid={testId}
             onClick={onClick}
         >

@@ -18,7 +18,7 @@ class Game extends React.Component {
         }
         this.ascRef = React.createRef();
         this.descRef = React.createRef();
-        this.btnRef = this.state.isAscending ? this.descRef : this.ascRef;
+        this.arrowRef = this.state.isAscending ? this.descRef : this.ascRef;
         this.toggleOrder = this.toggleOrder.bind(this);
     }
 
@@ -71,22 +71,33 @@ class Game extends React.Component {
              
         const moves = history.map((move, step) => {
             let desc;
+            let position;
             if (step) {
-                const position = calculateCurrentPosition(move.position);
-                desc = `Go to move #${step} ${position}`;
+                position = calculateCurrentPosition(move.position);
+                desc = `Go to move ${step}`;
             } else {
                 desc = 'Go to game start';
             }
 
             return (
-                <li key={desc} className={`item ${step === this.state.stepNumber ? 'active' : ''}`}>
+                <li key={desc} className={`move ${step === this.state.stepNumber ? 'active' : ''}`}>
                     <button
                         className='btn'
                         data-testid={`btn-${step}`}
                         onClick={() => this.jumpTo(step)}
                     >
                         {desc}
-                    </button>
+                    </button> 
+                    {(step !== 0) && <>
+                        <Board 
+                            cells={move.cells}
+                            position={move.position}
+                        />
+                        <span className='position'>
+                            <span>{position.row}</span>
+                            <span>{position.col}</span>
+                        </span>
+                    </>}
                 </li>
             )
         });
@@ -98,7 +109,7 @@ class Game extends React.Component {
                 <div className="game-board">
                     <div className="panel">
                         <p className="status">{status}</p>
-                        <Board 
+                        <Board
                             line={line}
                             cells={current.cells}
                             position={current.position}
@@ -107,26 +118,30 @@ class Game extends React.Component {
                     </div>
                 </div>    
                 <div className='game-info'>
-                    <SwitchTransition mode='out-in'>
-                        <CSSTransition
-                            key={this.state.isAscending}
-                            nodeRef={this.btnRef}
-                            addEndListener={done => this.btnRef.current.addEventListener('transitionend', done, false)}
-                            classNames='order'
+                    <button 
+                            className='order'
+                            onClick={this.toggleOrder}
                         >
-                            <button 
-                                className='order'
-                                ref={this.btnRef}
-                                onClick={this.toggleOrder}
+                        <SwitchTransition mode='out-in'>
+                            <CSSTransition
+                                key={this.state.isAscending}
+                                nodeRef={this.arrowRef}
+                                addEndListener={done => this.arrowRef.current.addEventListener('transitionend', done, false)}
+                                classNames='arrow'
                             >
-                                {String.fromCharCode(this.state.isAscending ? 10225 : 10224)}
-                            </button>
-                        </CSSTransition>
-                    </SwitchTransition>
+                                <span
+                                    className='arrow'
+                                    ref={this.arrowRef}
+                                >
+                                    {String.fromCharCode(this.state.isAscending ? 10225 : 10224)}
+                                </span>
+                            </CSSTransition>
+                        </SwitchTransition>
+                        <span>Show in {this.state.isAscending ? 'decsending' : 'ascending'} order</span>
+                    </button>
                     <ul className='moves'>{orderedMoves}</ul>
                 </div>
             </div>
-        
         );
     }
 }

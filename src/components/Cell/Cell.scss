@@ -1,14 +1,22 @@
+@import '../../common/utils/breakpoints.scss';
+
 .cell {
+    width: 80px;
+    height: 80px;
+    padding: 0;
+    text-align: center;
+    line-height: 80px;
+    font-size: 44px;
+    font-weight: 600;
     color: rgb(1, 68, 134);
     background: #fff;
     border: none;
-    font-size: 44px;
-    font-weight: 600;
-    line-height: 70px;
-    height: 70px;
-    padding: 0;
-    text-align: center;
-    width: 70px;
+
+    @media  screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+    }
 }
   
 .cell:focus {

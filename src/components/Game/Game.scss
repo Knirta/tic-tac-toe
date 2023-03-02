@@ -8,29 +8,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 20px 10px;
 
     @media screen and (min-width: $minTabletWidth) {
         flex-direction: row;
         justify-content: center;
         align-items: unset;
+        padding: 20px 0;
     }
- 
+
+    @media screen and (min-width: $desktopWidth) {
+        padding: 20px;
+    }
 }
 
 .game-board {
     padding: 20px 0;
 
     @media screen and (min-width: $minTabletWidth) {
-        width: 45%;
+        width: 42%;
         display: flex;
         justify-content: flex-end;
         padding-right: 20px;
+        padding-top: 40px;
     }
 
-    @media screen and (min-width: $desctopWidth) {
-        width: 50%;
+    @media screen and (min-width: $desktopWidth) {
+        width: 45%;
         padding-right: 40px;
+        padding-top: 30px;
     }
 }
 
@@ -52,48 +58,54 @@
 }
   
 .game-info {
-    width: 240px;
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     @media  screen and (min-width: $minTabletWidth) {
-        width: 55%; 
-        padding-top: 0;
-        padding-left: 20px;
+        width: 58%;
         align-items: start;
     }
 
-    @media screen and (min-width: $desctopWidth) {
-        width: 50%;
-        padding-left: 40px;
+    @media  screen and (min-width: $desktopWidth) {
+        width: 55%;
     }
-    
 }
 
-.active button {
+.active .btn {
     font-weight: 600;
     color: rgb(222, 184, 135)
 }
 
-.btn {
-    width: 200px;
-    padding: 10px 5px;
-    border: none;
-    outline: none;
+.move {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 225px;
+    height: 50px;
+    padding: 0 8px;
     border-radius:2px;
-    color: rgb(255, 255, 255);
     box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);;
     background-color:  rgb(1, 68, 134);
-    text-transform: uppercase;
-    cursor: pointer;
     animation: btnAppear .3s;
 
     @media  screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
-        width: 165px;
-        font-size: 14px;
+        width: 194px;
+        font-size: 12px;
     }
+}
+
+.btn {
+    flex-grow: 1;
+    height: 100%;
+    text-align: left;
+    padding: 0;
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 @keyframes btnAppear {
@@ -107,44 +119,97 @@
     }
 }
 
-.order {
-    width: 200px;
-    font-size: 50px;
-    text-align: center;
-    background-color: transparent;
-    color:rgb(255, 255, 255);
-    border: none;
-    margin-bottom: 8px;
-    padding: 10px 0;
-    cursor: pointer;
+.move .board {
+    width: 40px;
+    height: 40px;
+    grid-template-columns: repeat(3, 12px);
+    grid-template-rows: repeat(3, 12px);
+    gap: 2px;
+    margin: 5px;
 }
 
-.order-enter{
+.move .cell {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 12px;
+    height: 12px;
+    width: 12px;
+    pointer-events: none;
+    color:rgb(255, 255, 255);
+}
+
+.move .cell.current {
+    color:rgb(1, 68, 134);
+}
+
+.position {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    font-size: 10px;
+}
+
+.order {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color:rgb(255, 255, 255);
+    border-radius:2px;
+    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);;
+    background-color:  rgb(1, 68, 134);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    @media  screen and (min-width: $minTabletWidth) {
+        margin-left: 85px;
+        margin-bottom: 8px;
+    }
+
+    @media  screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
+        font-size: 15px;
+    }
+
+    @media  screen and (min-width: $desktopWidth) {
+        margin-left: 112px;
+    }
+}
+
+.arrow {
+    display: inline-block;
+    font-size: 36px;
+    margin-right: 10px;
+}
+
+.arrow-enter{
     opacity: 0;
     transform:  rotate(180deg);
 } 
 
-.order-exit {
+.arrow-exit {
     opacity: 1;
     transform:  rotate(0deg);
 }
 
-.order-enter-active {
+.arrow-enter-active {
     opacity: 1;
     transform:  rotate(360deg);
 }
 
-.order-exit-active {
+.arrow-exit-active {
     opacity: 0;
     transform: rotate(180deg);
 }
 
-.order-enter-active,
-.order-exit-active {
+.arrow-enter-active,
+.arrow-exit-active {
     transition: all 150ms linear;
 }
 
-.item + .item {
+.move + .move {
     @media screen and (max-width: $maxMobileWidth) {
         margin-top: 15px;
     }

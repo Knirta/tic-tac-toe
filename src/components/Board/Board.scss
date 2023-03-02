@@ -1,9 +1,17 @@
+@import '../../common/utils/breakpoints.scss';
+
 .board {
-    width: 218px;
+    width: 248px;
     display: grid;
-    grid-template-columns: repeat(3, 70px);
-    grid-template-rows: repeat(3, 70px);
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
     gap: 4px;
     background-color: rgb(1, 68, 134);
     margin: 20px;
+
+    @media  screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
+        width: 218px;
+        grid-template-columns: repeat(3, 70px);
+        grid-template-rows: repeat(3, 70px);
+    }
 }
