@@ -3,6 +3,10 @@ body {
     font-size: 16px;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
 ol, ul {
     list-style: none;
     padding: 0;

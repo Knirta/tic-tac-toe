@@ -1,6 +1,7 @@
 import React from 'react';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Board from '../Board';
+import Modal from '../Modal';
 import { calculateWinner, calculateCurrentPosition } from '../../helpers/helpers'
 import './Game.scss';
 
@@ -12,6 +13,7 @@ class Game extends React.Component {
                 cells: Array(9).fill(null),
                 position: null,
             }],
+            isXFirst: true,
             isXNext: true,
             stepNumber: 0,
             isAscending: true,
@@ -43,13 +45,20 @@ class Game extends React.Component {
     jumpTo(step) {
         this.setState({
             stepNumber: step,
-            isXNext: (step % 2 === 0),
+            isXNext: this.state.isXFirst ? (step % 2 === 0) : (step % 2 === 1),
         });
     }
 
     toggleOrder() {
         this.setState({
             isAscending: !this.state.isAscending,
+        });
+    }
+
+    handleChange(e) {
+        this.setState({
+            isXNext: JSON.parse(e.target.value),
+            isXFirst: JSON.parse(e.target.value),
         });
     }
 
@@ -141,6 +150,7 @@ class Game extends React.Component {
                     </button>
                     <ul className='moves'>{orderedMoves}</ul>
                 </div>
+                <Modal onChange={e => this.handleChange(e)}/>
             </div>
         );
     }
