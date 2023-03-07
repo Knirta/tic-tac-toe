@@ -66,11 +66,14 @@ const Game = () => {
             desc = 'Go to game start';
         }
         return (
-            <li key={desc} className={`move ${move === moveNumber ? 'active' : ''}`}>
+            <li
+                key={desc}
+                onClick={() => jumpTo(move)}
+                className={`move ${move === moveNumber ? 'active' : ''}`}
+            >
                 <button
                     className='btn'
                     data-testid={`btn-${move}`}
-                    onClick={() => jumpTo(move)}
                 >
                     {desc}
                 </button> 
