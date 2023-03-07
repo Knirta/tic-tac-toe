@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import './Modal.scss';
 
-const Modal = ({ checked, onChange }) => {
+const Modal = ({ onChange }) => {
     const [isOpen, setIsOpen] = useState(true);
 
     useEffect(() => {

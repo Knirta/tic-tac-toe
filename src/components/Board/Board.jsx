@@ -2,39 +2,35 @@ import React from 'react';
 import Cell from '../Cell';
 import './Board.scss';
 
-class Board extends React.Component {
-    renderCell(i) {
-        const line = this.props.line;
-        let highlight = false;
-        let current = false;
-        current = this.props.position === i;
-        if (line) {
-            highlight = line.includes(i);
+const Board = ({ cells, winnerLine, currentIndex, onClick }) => {
+    const renderCell = i => {
+        let highlightCell = false;
+        let visibleCell = false;
+        visibleCell = currentIndex === i;
+        if (winnerLine) {
+            highlightCell = winnerLine.includes(i);
         }
         let testId;
-        if (this.props.onClick) {
+        if (onClick) {
             testId = `cell-${i}`;
         }
         return (
             <Cell
-                value={this.props.cells[i]}
+                value={cells[i]}
                 key={i}
-                highlight={highlight}
-                current={current}
+                highlightCell={highlightCell}
+                visibleCell={visibleCell}
                 testId={testId}
-                onClick={() => this.props.onClick(i)}
+                onClick={() => onClick(i)}
             />
         );
     }
 
-    render() {
-        const cells = this.props.cells;
-        return (
-            <div className="board">
-                { cells.map( (_, idx ) => this.renderCell(idx) )}
-            </div>
-        );
-    }
-}
+    return (
+        <div className="board">
+            { cells.map( (_, idx ) => renderCell(idx) )}
+        </div>
+    );
+};
 
 export default Board;

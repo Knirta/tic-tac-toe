@@ -1,159 +1,134 @@
-import React from 'react';
+import { useState, useRef } from 'react';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Board from '../Board';
 import Modal from '../Modal';
 import { calculateWinner, calculateCurrentPosition } from '../../helpers/helpers'
 import './Game.scss';
 
-class Game extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            history: [{
-                cells: Array(9).fill(null),
-                position: null,
-            }],
-            isXFirst: true,
-            isXNext: true,
-            stepNumber: 0,
-            isAscending: true,
-        }
-        this.ascRef = React.createRef();
-        this.descRef = React.createRef();
-        this.arrowRef = this.state.isAscending ? this.descRef : this.ascRef;
-        this.toggleOrder = this.toggleOrder.bind(this);
-    }
+const Game = () => {
+    const [history, setHistory] = useState([Array(9).fill(null)]);
+    const [movesHistory, setMovesHistory] = useState([null]);
+    const [isXFirst, setIsXFirst] = useState(true);
+    const [moveNumber, setMoveNumber] = useState(0);
+    const [isAscending, setIsAscending] = useState(true);
 
-    handleClick(i) {
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
-        const current = history[history.length - 1];
-        const cells = current.cells.slice();
-        if (calculateWinner(cells) || cells[i]) {
+    const isXNext = isXFirst ? (moveNumber % 2 === 0) : (moveNumber % 2 === 1);
+    const currentCells = history[moveNumber];
+
+    const ascRef = useRef(null);
+    const descRef = useRef(null);
+    const arrowRef = isAscending ? descRef : ascRef;
+
+    const handleClick = i => {
+        if (calculateWinner(currentCells) || currentCells[i]) {
             return;
         }
-        cells[i] = this.state.isXNext ? 'X' : 'O';
-        this.setState({
-            history: history.concat([{
-                cells: cells,
-                position: i,
-            }]),
-            isXNext: !this.state.isXNext,
-            stepNumber: history.length,
-        });
+        const nextCells = currentCells.slice();
+        nextCells[i] = isXNext ? 'X' : 'O';
+        const nextHistory = [...history.slice(0, moveNumber + 1), nextCells];
+        setHistory(nextHistory);
+        setMovesHistory([...movesHistory.slice(0, moveNumber + 1), i]);
+        setMoveNumber(nextHistory.length - 1);
+    }
+    
+    const jumpTo = number => {
+        setMoveNumber(number);
     }
 
-    jumpTo(step) {
-        this.setState({
-            stepNumber: step,
-            isXNext: this.state.isXFirst ? (step % 2 === 0) : (step % 2 === 1),
-        });
+    const toggleOrder = () => {
+        setIsAscending(!isAscending);
     }
 
-    toggleOrder() {
-        this.setState({
-            isAscending: !this.state.isAscending,
-        });
+    const handleChange = e => {
+        setIsXFirst(JSON.parse(e.target.value));
     }
 
-    handleChange(e) {
-        this.setState({
-            isXNext: JSON.parse(e.target.value),
-            isXFirst: JSON.parse(e.target.value),
-        });
+    let status;
+    let winnerLine = null;
+    const winner = calculateWinner(currentCells);
+    
+    if (winner) {
+        status = `Winner: ${winner.cell}`;
+        winnerLine = winner.line;
+    } else if (!winner && !currentCells.includes(null)) {
+        status = 'Played a draw';
+    } else {
+        status = `Next player: ${isXNext ? 'X' : 'O'}`;
     }
 
-    render() {
-        const history = this.state.history;
-        const current = history[this.state.stepNumber];
-        let status;
-        let line = null;
-        const winner = calculateWinner(current.cells);
-        
-        if (winner) {
-            status = `Winner: ${winner.cell}`;
-            line = winner.line;
-        } else if (!winner && !current.cells.includes(null)) {
-            status = 'Played a draw';
+    const moves = history.map((cells, move) => {
+        let desc;
+        let currentPosition;
+        if (move) {
+            currentPosition = calculateCurrentPosition(movesHistory[move]);
+            desc = `Go to move ${move}`;
         } else {
-            status = `Next player: ${this.state.isXNext ? 'X' : 'O'}`;
+            desc = 'Go to game start';
         }
-             
-        const moves = history.map((move, step) => {
-            let desc;
-            let position;
-            if (step) {
-                position = calculateCurrentPosition(move.position);
-                desc = `Go to move ${step}`;
-            } else {
-                desc = 'Go to game start';
-            }
-
-            return (
-                <li key={desc} className={`move ${step === this.state.stepNumber ? 'active' : ''}`}>
-                    <button
-                        className='btn'
-                        data-testid={`btn-${step}`}
-                        onClick={() => this.jumpTo(step)}
-                    >
-                        {desc}
-                    </button> 
-                    {(step !== 0) && <>
-                        <Board 
-                            cells={move.cells}
-                            position={move.position}
-                        />
-                        <span className='position'>
-                            <span>{position.row}</span>
-                            <span>{position.col}</span>
-                        </span>
-                    </>}
-                </li>
-            )
-        });
-
-        const orderedMoves = this.state.isAscending ? moves : [...moves].reverse();
-
         return (
-            <div className="game">
-                <div className="game-board">
-                    <div className="panel">
-                        <p className="status">{status}</p>
-                        <Board
-                            line={line}
-                            cells={current.cells}
-                            position={current.position}
-                            onClick={(i) => this.handleClick(i)}  
-                        />
-                    </div>
-                </div>    
-                <div className='game-info'>
-                    <button 
-                            className='order'
-                            onClick={this.toggleOrder}
-                        >
-                        <SwitchTransition mode='out-in'>
-                            <CSSTransition
-                                key={this.state.isAscending}
-                                nodeRef={this.arrowRef}
-                                addEndListener={done => this.arrowRef.current.addEventListener('transitionend', done, false)}
-                                classNames='arrow'
-                            >
-                                <span
-                                    className='arrow'
-                                    ref={this.arrowRef}
-                                >
-                                    {String.fromCharCode(this.state.isAscending ? 10225 : 10224)}
-                                </span>
-                            </CSSTransition>
-                        </SwitchTransition>
-                        <span>Show in {this.state.isAscending ? 'decsending' : 'ascending'} order</span>
-                    </button>
-                    <ul className='moves'>{orderedMoves}</ul>
+            <li key={desc} className={`move ${move === moveNumber ? 'active' : ''}`}>
+                <button
+                    className='btn'
+                    data-testid={`btn-${move}`}
+                    onClick={() => jumpTo(move)}
+                >
+                    {desc}
+                </button> 
+                {(move !== 0) && <>
+                    <Board 
+                        cells={cells}
+                        currentIndex={movesHistory[move]}
+                    />
+                    <span className='position'>
+                        <span>{currentPosition.row}</span>
+                        <span>{currentPosition.col}</span>
+                    </span>
+                </>}
+            </li>
+        )
+    });
+
+    const orderedMoves = isAscending ? moves : [...moves].reverse();
+
+    return (
+        <div className="game">
+            <div className="game-board">
+                <div className="panel">
+                    <p className="status">{status}</p>
+                    <Board
+                        winnerLine={winnerLine}
+                        cells={currentCells}
+                        onClick={(i) => handleClick(i)}  
+                    />
                 </div>
-                <Modal onChange={e => this.handleChange(e)}/>
+            </div>    
+            <div className='game-info'>
+                <button 
+                        className='order'
+                        onClick={toggleOrder}
+                    >
+                    <SwitchTransition mode='out-in'>
+                        <CSSTransition
+                            key={isAscending}
+                            nodeRef={arrowRef}
+                            addEndListener={done => arrowRef.current.addEventListener('transitionend', done, false)}
+                            classNames='arrow'
+                        >
+                            <span
+                                className='arrow'
+                                ref={arrowRef}
+                            >
+                                {String.fromCharCode(isAscending ? 10225 : 10224)}
+                            </span>
+                        </CSSTransition>
+                    </SwitchTransition>
+                    <span>Show in {isAscending ? 'decsending' : 'ascending'} order</span>
+                </button>
+                <ul className='moves'>{orderedMoves}</ul>
             </div>
-        );
-    }
+            <Modal onChange={e => handleChange(e)}/>
+        </div>
+    );
 }
 
 export default Game;
