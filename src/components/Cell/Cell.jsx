@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import './Cell.scss';
 
@@ -21,6 +22,14 @@ function Cell({value, highlightCell, visibleCell, testId, onClick}) {
             </CSSTransition>
         </button>   
     );
+}
+
+Cell.propTypes = {
+    value: PropTypes.oneOf(['X', 'O', null]),
+    highlightCell: PropTypes.bool,
+    visibleCell: PropTypes.bool,
+    testId: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
 }
 
 export default Cell;

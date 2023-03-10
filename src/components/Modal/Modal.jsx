@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import './Modal.scss';
 
 const Modal = ({ onChange }) => {
@@ -30,5 +31,9 @@ const Modal = ({ onChange }) => {
 
     );
 };
+
+Modal.propTypes = {
+    onChange: PropTypes.func.isRequired,
+}
 
 export default Modal;

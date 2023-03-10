@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Cell from '../Cell';
 import './Board.scss';
 
@@ -32,5 +33,12 @@ const Board = ({ cells, winnerLine, currentIndex, onClick }) => {
         </div>
     );
 };
+
+Board.propTypes = {
+    cells: PropTypes.array.isRequired,
+    winnerLine: PropTypes.arrayOf(PropTypes.number),
+    currentIndex: PropTypes.number,
+    onClick: PropTypes.func,
+}
 
 export default Board;
