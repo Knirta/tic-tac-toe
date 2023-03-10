@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
+import cn from 'classnames';
 import './Cell.scss';
 
 function Cell({value, highlightCell, visibleCell, testId, onClick}) {
+    const btnClass = cn({
+        cell: true,
+        highlight: highlightCell,
+        visible: visibleCell,
+    });
     return (
         <button
-            className={`cell ${highlightCell ? 'highlight' : ''} ${visibleCell ? 'visible' : ''}`}
+            className={btnClass}
             data-testid={testId}
             onClick={onClick}
         >

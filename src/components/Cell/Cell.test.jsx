@@ -27,8 +27,8 @@ describe('Component Cell', () => {
     });
 
     test('render button with "highlight" class', () => {
-        render(<Cell value={'X'} highlight={true} onClick={onClick} />);
-        expect(screen.getByRole('button').classList.contains('highlight')).toBe(true);
+        render(<Cell value='X' highlight={true} testId='cell-4' onClick={onClick} />);
+        expect(screen.getByTestId('cell-4')).toHaveClass('highlight');
         //screen.logTestingPlaygroundURL()
     });
 
