@@ -1,234 +1,235 @@
 @import '../../common/utils/breakpoints.scss';
 
 .status {
-    text-align: center;
+  text-align: center;
 }
 
 .game {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
 
-    @media screen and (min-width: $minTabletWidth) {
-        flex-direction: row;
-        justify-content: center;
-        align-items: unset;
-        padding: 20px 0;
-    }
+  @media screen and (min-width: $minTabletWidth) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: unset;
+    padding: 20px 0;
+  }
 
-    @media screen and (min-width: $desktopWidth) {
-        padding: 20px;
-    }
+  @media screen and (min-width: $desktopWidth) {
+    padding: 20px;
+  }
 }
 
 .game-board {
-    padding: 20px 0;
+  padding: 20px 0;
 
-    @media screen and (min-width: $minTabletWidth) {
-        width: 42%;
-        display: flex;
-        justify-content: flex-end;
-        padding-right: 20px;
-        padding-top: 40px;
-    }
+  @media screen and (min-width: $minTabletWidth) {
+    width: 42%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    padding-top: 40px;
+  }
 
-    @media screen and (min-width: $desktopWidth) {
-        width: 45%;
-        padding-right: 40px;
-        padding-top: 30px;
-    }
+  @media screen and (min-width: $desktopWidth) {
+    width: 45%;
+    padding-right: 40px;
+    padding-top: 30px;
+  }
 }
 
-
 .status {
-    color: rgb(25, 116, 210);
-    font-size: 18px;
+  color: rgb(25, 116, 210);
+  font-size: 18px;
 }
 
 .panel {
-    padding: 10px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 4px;
-    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
+    0px 2px 1px rgb(0 0 0 / 20%);
 
-    @media screen and (min-width: $minTabletWidth) {
-        align-self: start;
-    }
+  @media screen and (min-width: $minTabletWidth) {
+    align-self: start;
+  }
 }
-  
+
 .game-info {
-    padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    @media  screen and (min-width: $minTabletWidth) {
-        width: 58%;
-        align-items: start;
-    }
+  @media screen and (min-width: $minTabletWidth) {
+    width: 58%;
+    align-items: start;
+  }
 
-    @media  screen and (min-width: $desktopWidth) {
-        width: 55%;
-    }
+  @media screen and (min-width: $desktopWidth) {
+    width: 55%;
+  }
 }
 
 .active .btn {
-    font-weight: 600;
-    color: rgb(222, 184, 135)
+  font-weight: 600;
+  color: rgb(222, 184, 135);
 }
 
 .move {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 225px;
-    height: 50px;
-    padding: 0 8px;
-    border-radius:2px;
-    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);;
-    background-color:  rgb(1, 68, 134);
-    animation: btnAppear .3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 225px;
+  height: 50px;
+  padding: 0 8px;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
+    0px 2px 1px rgb(0 0 0 / 20%);
+  background-color: rgb(1, 68, 134);
+  animation: btnAppear 0.3s;
 
-    @media  screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
-        width: 194px;
-        font-size: 12px;
-    }
+  @media screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
+    width: 194px;
+    font-size: 12px;
+  }
 }
 
 .btn {
-    flex-grow: 1;
-    height: 100%;
-    text-align: left;
-    padding: 0;
-    border: none;
-    color: rgb(255, 255, 255);
-    background-color: inherit;
-    text-transform: uppercase;
-    cursor: pointer;
+  flex-grow: 1;
+  height: 100%;
+  text-align: left;
+  padding: 0;
+  border: none;
+  color: rgb(255, 255, 255);
+  background-color: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 @keyframes btnAppear {
-    from {
-        opacity: 0;
-        transform: scale(.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .move .board {
-    width: 40px;
-    height: 40px;
-    grid-template-columns: repeat(3, 12px);
-    grid-template-rows: repeat(3, 12px);
-    gap: 2px;
-    margin: 5px;
+  width: 40px;
+  height: 40px;
+  grid-template-columns: repeat(3, 12px);
+  grid-template-rows: repeat(3, 12px);
+  gap: 2px;
+  margin: 5px;
 }
 
 .move .cell {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 12px;
-    height: 12px;
-    width: 12px;
-    pointer-events: none;
-    color:rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 12px;
+  height: 12px;
+  width: 12px;
+  pointer-events: none;
+  color: rgb(255, 255, 255);
 }
 
-.move .cell.visible{
-    color:rgb(1, 68, 134);
+.move .cell.visible {
+  color: rgb(1, 68, 134);
 }
 
 .position {
-    display: flex;
-    flex-direction: column;
-    padding-left: 5px;
-    font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+  font-size: 10px;
 }
 
 .order {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 50px;
-    margin-bottom: 15px;
-    font-size: 18px;
-    color:rgb(255, 255, 255);
-    border-radius:2px;
-    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);;
-    background-color:  rgb(1, 68, 134);
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
+    0px 2px 1px rgb(0 0 0 / 20%);
+  background-color: rgb(1, 68, 134);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 
-    @media  screen and (min-width: $minTabletWidth) {
-        margin-left: 85px;
-        margin-bottom: 8px;
-    }
+  @media screen and (min-width: $minTabletWidth) {
+    margin-left: 85px;
+    margin-bottom: 8px;
+  }
 
-    @media  screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
-        font-size: 15px;
-    }
+  @media screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
+    font-size: 15px;
+  }
 
-    @media  screen and (min-width: $desktopWidth) {
-        margin-left: 112px;
-    }
+  @media screen and (min-width: $desktopWidth) {
+    margin-left: 112px;
+  }
 }
 
 .arrow {
-    display: inline-block;
-    font-size: 36px;
-    margin-right: 10px;
+  display: inline-block;
+  font-size: 36px;
+  margin-right: 10px;
 }
 
-.arrow-enter{
-    opacity: 0;
-    transform:  rotate(180deg);
-} 
+.arrow-enter {
+  opacity: 0;
+  transform: rotate(180deg);
+}
 
 .arrow-exit {
-    opacity: 1;
-    transform:  rotate(0deg);
+  opacity: 1;
+  transform: rotate(0deg);
 }
 
 .arrow-enter-active {
-    opacity: 1;
-    transform:  rotate(360deg);
+  opacity: 1;
+  transform: rotate(360deg);
 }
 
 .arrow-exit-active {
-    opacity: 0;
-    transform: rotate(180deg);
+  opacity: 0;
+  transform: rotate(180deg);
 }
 
 .arrow-enter-active,
 .arrow-exit-active {
-    transition: all 150ms linear;
+  transition: all 150ms linear;
 }
 
 .move + .move {
-    @media screen and (max-width: $maxMobileWidth) {
-        margin-top: 15px;
-    }
+  @media screen and (max-width: $maxMobileWidth) {
+    margin-top: 15px;
+  }
 }
 
 .moves {
-    @media  screen and (min-width: $minTabletWidth) {
-        /*  two colums buttons with css grid (5 rows, two columns) */
-        display: grid;
-        gap: 7px;
-        grid-auto-flow: column;
-        grid-template-columns: repeat(2, auto);
-        grid-template-rows: repeat(5, auto);
-        /*  two colums buttons with css flex
+  @media screen and (min-width: $minTabletWidth) {
+    /*  two colums buttons with css grid (5 rows, two columns) */
+    display: grid;
+    gap: 7px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(5, auto);
+    /*  two colums buttons with css flex
         display: flex;
         flex-flow: column wrap;
         gap: 7px;
         height: 220px;
         */
-    }
+  }
 }
-
