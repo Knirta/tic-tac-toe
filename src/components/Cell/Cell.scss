@@ -1,4 +1,4 @@
-@import '../../common/utils/breakpoints.scss';
+@import '../../common/main.scss';
 
 .cell {
   width: 80px;
@@ -8,8 +8,8 @@
   line-height: 80px;
   font-size: 44px;
   font-weight: 600;
-  color: rgb(1, 68, 134);
-  background: #fff;
+  color: $accentColor;
+  background: $secondaryBgColor;
   border: none;
 
   @media screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
@@ -24,8 +24,8 @@
 }
 
 .highlight {
-  background-color: rgb(25, 116, 210);
-  color: rgb(255, 255, 255);
+  background-color: $primaryBgColor;
+  color: $primaryTextColor;
 }
 
 .mark {

@@ -1,0 +1,37 @@
+:root {
+  --primary-text-color: rgb(255, 255, 255);
+  --secondary-text-color: rgb(25, 116, 210);
+  --primary-bgcolor: rgb(25, 116, 210);
+  --secondary-bgcolor: rgb(255, 255, 255);
+  --accent-color: rgb(1, 68, 134);
+}
+
+[data-theme='blue'] {
+  --secondary-text-color: rgb(25, 116, 210);
+  --primary-bgcolor: rgb(25, 116, 210);
+  --accent-color: rgb(1, 68, 134);
+}
+
+[data-theme='green'] {
+  --secondary-text-color: rgb(83, 144, 15);
+  --primary-bgcolor: rgb(83, 144, 15);
+  --accent-color: rgb(31, 101, 33);
+}
+
+[data-theme='red'] {
+  --secondary-text-color: rgb(188, 70, 57);
+  --primary-bgcolor: rgb(188, 70, 57);
+  --accent-color: rgb(92, 32, 24);
+}
+
+[data-theme='dark'] {
+  --secondary-text-color: rgb(70, 72, 102);
+  --primary-bgcolor: rgb(70, 72, 102);
+  --accent-color: rgb(37, 39, 77);
+}
+
+$primaryTextColor: var(--primary-text-color);
+$secondaryTextColor: var(--secondary-text-color);
+$primaryBgColor: var(--primary-bgcolor);
+$secondaryBgColor: var(--secondary-bgcolor);
+$accentColor: var(--accent-color);
