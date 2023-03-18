@@ -1,4 +1,4 @@
-@import '../../common/utils/breakpoints.scss';
+@import '../../common/main.scss';
 
 .board {
   width: 248px;
@@ -6,7 +6,7 @@
   grid-template-columns: repeat(3, 80px);
   grid-template-rows: repeat(3, 80px);
   gap: 4px;
-  background-color: rgb(1, 68, 134);
+  background-color: $accentColor;
   margin: 20px;
 
   @media screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {

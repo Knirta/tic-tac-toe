@@ -1,10 +1,10 @@
-@import '../../common/utils/breakpoints.scss';
+@import '../../common/main.scss';
 
 .container {
   min-width: $minMobileWidth;
   min-height: 100vh;
   padding: 10px;
-  background-color: rgb(25, 116, 210);
+  background-color: $primaryBgColor;
 
   @media screen and (min-width: $minTabletWidth) {
     padding: 25px;

@@ -1,4 +1,4 @@
-@import '../../common/utils/breakpoints.scss';
+@import '../../common/main.scss';
 
 .status {
   text-align: center;
@@ -41,13 +41,13 @@
 }
 
 .status {
-  color: rgb(25, 116, 210);
+  color: $secondaryTextColor;
   font-size: 18px;
 }
 
 .panel {
   padding: 10px;
-  background-color: rgb(255, 255, 255);
+  background-color: $secondaryBgColor;
   border-radius: 4px;
   box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
     0px 2px 1px rgb(0 0 0 / 20%);
@@ -88,7 +88,7 @@
   border-radius: 2px;
   box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
     0px 2px 1px rgb(0 0 0 / 20%);
-  background-color: rgb(1, 68, 134);
+  background-color: $accentColor;
   animation: btnAppear 0.3s;
 
   @media screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
@@ -103,7 +103,7 @@
   text-align: left;
   padding: 0;
   border: none;
-  color: rgb(255, 255, 255);
+  color: $primaryTextColor;
   background-color: inherit;
   text-transform: uppercase;
   cursor: pointer;
@@ -136,11 +136,11 @@
   height: 12px;
   width: 12px;
   pointer-events: none;
-  color: rgb(255, 255, 255);
+  color: $primaryTextColor;
 }
 
 .move .cell.visible {
-  color: rgb(1, 68, 134);
+  color: $accentColor;
 }
 
 .position {
@@ -157,11 +157,11 @@
   height: 50px;
   margin-bottom: 15px;
   font-size: 18px;
-  color: rgb(255, 255, 255);
+  color: $primaryTextColor;
   border-radius: 2px;
   box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
     0px 2px 1px rgb(0 0 0 / 20%);
-  background-color: rgb(1, 68, 134);
+  background-color: $accentColor;
   border: none;
   padding: 5px 10px;
   cursor: pointer;

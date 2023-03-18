@@ -1,3 +1,5 @@
+@import '../../common/main.scss';
+
 .backdrop {
   display: flex;
   justify-content: center;
@@ -20,8 +22,8 @@
   font-size: 20px;
   font-weight: 600;
   border-radius: 5px;
-  color: rgb(25, 116, 210);
-  background-color: rgb(255, 255, 255);
+  color: $secondaryTextColor;
+  background-color: $secondaryBgColor;
   box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
     0px 2px 1px rgb(0 0 0 / 20%);
 }
@@ -43,15 +45,15 @@
   justify-content: center;
   align-items: center;
   font-size: 40px;
-  color: rgb(1, 68, 134);
+  color: $accentColor;
   border-radius: 3px;
   box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
     0px 2px 1px rgb(0 0 0 / 20%);
 }
 
 .modal-choice input[type='radio']:checked + label {
-  color: rgb(255, 255, 255);
-  background-color: rgb(1, 68, 134);
+  color: $primaryTextColor;
+  background-color: $accentColor;
 }
 
 .modal-close {
@@ -65,6 +67,6 @@
   align-items: center;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgb(255, 255, 255);
-  color: rgb(1, 68, 134);
+  background: $secondaryBgColor;
+  color: $accentColor;
 }

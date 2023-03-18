@@ -1,5 +1,7 @@
+@import './common/main.scss';
+
 body {
-  color: rgb(255, 255, 255);
+  color: $primaryTextColor;
   font-size: 16px;
 }
 
