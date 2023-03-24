@@ -12,13 +12,13 @@ const Header = () => {
 
   return (
     <header className="header">
+      <h1 className="title">Tic Tac Toe</h1>
       <div className="themes">
         <div id="blue" className="theme" onClick={handleClick}></div>
         <div id="green" className="theme" onClick={handleClick}></div>
         <div id="dark" className="theme" onClick={handleClick}></div>
         <div id="red" className="theme" onClick={handleClick}></div>
       </div>
-      <h1 className="title">Tic Tac Toe</h1>
     </header>
   );
 };

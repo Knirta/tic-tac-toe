@@ -1,3 +1,5 @@
+@import '../../common/main.scss';
+
 .title {
   text-align: center;
   padding: 20px 0;
@@ -13,11 +15,17 @@
 }
 
 .themes {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  right: 5px;
   display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  @media screen and (min-width: $minTabletWidth) {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translate(0, -50%);
+    margin-top: 0;
+  }
 }
 
 .theme {

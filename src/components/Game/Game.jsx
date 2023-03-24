@@ -90,7 +90,7 @@ const Game = () => {
     );
   });
 
-  const orderedMoves = isAscending ? moves : [...moves].reverse();
+  const orderedMoves = isAscending ? moves : [...moves.reverse()];
 
   return (
     <div className="game">
