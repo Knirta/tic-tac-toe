@@ -62,8 +62,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 
   @media screen and (min-width: $minTabletWidth) {
+    padding-top: 65px;
     width: 58%;
     align-items: start;
   }
@@ -163,27 +165,25 @@
     0px 2px 1px rgb(0 0 0 / 20%);
   background-color: $accentColor;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 15px;
   cursor: pointer;
+  animation: btnAppear 0.3s;
 
   @media screen and (min-width: $minTabletWidth) {
-    margin-left: 85px;
-    margin-bottom: 8px;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    margin-bottom: 0;
   }
 
   @media screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
     font-size: 15px;
-  }
-
-  @media screen and (min-width: $desktopWidth) {
-    margin-left: 112px;
   }
 }
 
 .arrow {
   display: inline-block;
   font-size: 36px;
-  margin-right: 10px;
 }
 
 .arrow-enter {

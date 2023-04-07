@@ -90,7 +90,7 @@ const Game = () => {
     );
   });
 
-  const orderedMoves = isAscending ? moves : [...moves.reverse()];
+  const orderedMoves = isAscending ? moves : [...moves].reverse();
 
   return (
     <div className="game">
@@ -105,23 +105,28 @@ const Game = () => {
         </div>
       </div>
       <div className="game-info">
-        <button className="order" onClick={toggleOrder}>
-          <SwitchTransition mode="out-in">
-            <CSSTransition
-              key={isAscending}
-              nodeRef={arrowRef}
-              addEndListener={done =>
-                arrowRef.current.addEventListener('transitionend', done, false)
-              }
-              classNames="arrow"
-            >
-              <span className="arrow" ref={arrowRef}>
-                {String.fromCharCode(isAscending ? 10225 : 10224)}
-              </span>
-            </CSSTransition>
-          </SwitchTransition>
-          <span>Show in {isAscending ? 'decsending' : 'ascending'} order</span>
-        </button>
+        {history.length > 1 && (
+          <button className="order" onClick={toggleOrder}>
+            <SwitchTransition mode="out-in">
+              <CSSTransition
+                key={isAscending}
+                nodeRef={arrowRef}
+                addEndListener={done =>
+                  arrowRef.current.addEventListener(
+                    'transitionend',
+                    done,
+                    false,
+                  )
+                }
+                classNames="arrow"
+              >
+                <span className="arrow" ref={arrowRef}>
+                  {String.fromCharCode(isAscending ? 10225 : 10224)}
+                </span>
+              </CSSTransition>
+            </SwitchTransition>
+          </button>
+        )}
         <ul className="moves">{orderedMoves}</ul>
       </div>
       <Modal onChange={e => handleChange(e)} />
