@@ -11,6 +11,7 @@
   color: $accentColor;
   background: $secondaryBgColor;
   border: none;
+  cursor: pointer;
 
   @media screen and (min-width: $minTabletWidth) and (max-width: $maxTabletWidth) {
     width: 70px;

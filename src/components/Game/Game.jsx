@@ -42,7 +42,7 @@ const Game = () => {
     setIsAscending(!isAscending);
   };
 
-  const handleChange = e => {
+  const chooseFirstPlayer = e => {
     setIsXFirst(JSON.parse(e.target.value));
   };
 
@@ -129,7 +129,7 @@ const Game = () => {
         )}
         <ul className="moves">{orderedMoves}</ul>
       </div>
-      <Modal onChange={e => handleChange(e)} />
+      <Modal handleChange={chooseFirstPlayer} />
     </div>
   );
 };
