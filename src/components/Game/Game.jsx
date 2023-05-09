@@ -6,17 +6,20 @@ import {
   calculateWinner,
   calculateCurrentPosition,
 } from '../../helpers/helpers';
+import cn from 'classnames';
 import './Game.scss';
 
 const Game = () => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [movesHistory, setMovesHistory] = useState([null]);
   const [isXFirst, setIsXFirst] = useState(true);
-  const [moveNumber, setMoveNumber] = useState(0);
+  const [currentMoveNumber, setCurrentMoveNumber] = useState(0);
   const [isAscending, setIsAscending] = useState(true);
 
-  const isXNext = isXFirst ? moveNumber % 2 === 0 : moveNumber % 2 === 1;
-  const currentCells = history[moveNumber];
+  const isXNext = isXFirst
+    ? currentMoveNumber % 2 === 0
+    : currentMoveNumber % 2 === 1;
+  const currentCells = history[currentMoveNumber];
 
   const ascRef = useRef(null);
   const descRef = useRef(null);
@@ -28,14 +31,14 @@ const Game = () => {
     }
     const nextCells = currentCells.slice();
     nextCells[i] = isXNext ? 'X' : 'O';
-    const nextHistory = [...history.slice(0, moveNumber + 1), nextCells];
+    const nextHistory = [...history.slice(0, currentMoveNumber + 1), nextCells];
     setHistory(nextHistory);
-    setMovesHistory([...movesHistory.slice(0, moveNumber + 1), i]);
-    setMoveNumber(nextHistory.length - 1);
+    setMovesHistory([...movesHistory.slice(0, currentMoveNumber + 1), i]);
+    setCurrentMoveNumber(nextHistory.length - 1);
   };
 
   const jumpTo = number => {
-    setMoveNumber(number);
+    setCurrentMoveNumber(number);
   };
 
   const toggleOrder = () => {
@@ -62,6 +65,11 @@ const Game = () => {
   const moves = history.map((cells, move) => {
     let desc;
     let currentPosition;
+    const moveClass = cn({
+      move: true,
+      active: move === currentMoveNumber,
+    });
+
     if (move) {
       currentPosition = calculateCurrentPosition(movesHistory[move]);
       desc = `Go to move ${move}`;
@@ -69,11 +77,7 @@ const Game = () => {
       desc = 'Go to game start';
     }
     return (
-      <li
-        key={desc}
-        onClick={() => jumpTo(move)}
-        className={`move ${move === moveNumber ? 'active' : ''}`}
-      >
+      <li key={desc} onClick={() => jumpTo(move)} className={moveClass}>
         <button className="btn" data-testid={`btn-${move}`}>
           {desc}
         </button>
@@ -127,7 +131,9 @@ const Game = () => {
             </SwitchTransition>
           </button>
         )}
-        <ul className="moves">{orderedMoves}</ul>
+        <ul key={isAscending} className="moves">
+          {orderedMoves}
+        </ul>
       </div>
       <Modal handleChange={chooseFirstPlayer} />
     </div>

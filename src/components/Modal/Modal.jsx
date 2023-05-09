@@ -19,6 +19,7 @@ const Modal = ({ handleChange }) => {
   };
 
   const modalRef = useRef(null);
+
   useClickOutside(closeModal, modalRef);
 
   useEscapeKey(closeModal);
