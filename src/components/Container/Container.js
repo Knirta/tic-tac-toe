@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useThemeContext } from '../../contexts/contexts';
+import { useThemeContext } from '../../contexts/ThemeContext';
 import './Container.scss';
 
 const Container = ({ children }) => {
