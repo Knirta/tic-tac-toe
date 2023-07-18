@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from '../../contexts/contexts';
+import { useThemeContext } from '../../contexts/contexts';
 import './Container.scss';
 
 const Container = ({ children }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useThemeContext();
   return (
     <div className="container" data-theme={theme}>
       {children}

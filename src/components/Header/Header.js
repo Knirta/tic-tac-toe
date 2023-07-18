@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../contexts/contexts';
+import React from 'react';
+import { useThemeContext } from '../../contexts/contexts';
 import './Header.scss';
 
 const Header = () => {
-  const { setTheme } = useContext(ThemeContext);
+  const { setTheme } = useThemeContext();
   const handleClick = e => {
     const theme = e.target.id;
     localStorage.setItem('theme', theme);
